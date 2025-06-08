@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas de Veículos</title>
+</head>
+
+<section>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="veiculo : ${veiculos}">
+            <div class="card h-100">
+                <img th:src="@{${veiculo.imagemUrl}}" class="card-img-top" alt="Imagem do Veículo" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${veiculo.marca} + ' ' + ${veiculo.modelo}"></h5>
+                    <p class="card-text">
+                        <strong>Cor:</strong> <span th:text="${veiculo.cor}"></span><br/>
+                        <strong>Ano:</strong> <span th:text="${veiculo.ano}"></span><br/>
+                        <strong>Categoria:</strong> <span th:text="${veiculo.categoria.nome}"></span>
+                    </p>
+                </div>
+                <div class="card-footer">
+                   <a th:href="@{/veiculo/{id}(id=${veiculo.id})}" class="btn btn-primary w-100">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${veiculos.isEmpty()}" class="alert alert-info mt-3">
+        Nenhum veículo encontrado para esta busca.
+    </div>
+</section>
+
+</html>

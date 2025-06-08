@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: layout(~{::section})}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<section>
+    <h2 th:text="${veiculo.id == null} ? 'Cadastrar Novo Veículo' : 'Editar Veículo'"></h2>
+    <hr>
+    <form th:action="@{/admin/veiculos/salvar}" th:object="${veiculo}" method="post" enctype="multipart/form-data">
+        
+        <input type="hidden" th:field="*{id}">
+
+        <div class="mb-3">
+            <label for="marca" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="marca" th:field="*{marca}" required>
+        </div>
+        <div class="mb-3">
+            <label for="modelo" class="form-label">Modelo</label>
+            <input type="text" class="form-control" id="modelo" th:field="*{modelo}" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="placa" class="form-label">Placa</label>
+                <input type="text" class="form-control" id="placa" th:field="*{placa}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="ano" class="form-label">Ano</label>
+                <input type="number" class="form-control" id="ano" th:field="*{ano}" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="cor" class="form-label">Cor</label>
+            <input type="text" class="form-control" id="cor" th:field="*{cor}">
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <select class="form-select" id="categoria" th:field="*{categoria}" required>
+                <option value="">Selecione uma categoria</option>
+                <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.nome}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="imagemFile" class="form-label">Imagem do Veículo</label>
+            <input class="form-control" type="file" id="imagemFile" name="imagemFile">
+            <div th:if="${veiculo.imagemUrl}" class="mt-2">
+                <p>Imagem atual:</p>
+                <img th:src="@{${veiculo.imagemUrl}}" width="150" alt="Imagem atual"/>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a th:href="@{/admin/veiculos}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</section>
+
+</html>

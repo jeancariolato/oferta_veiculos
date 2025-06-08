@@ -1,0 +1,42 @@
+<html lang="pt" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: (~{::body/content()})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Veículos</title>
+</head>
+<body>
+<div th:fragment="content">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Gerenciamento de Veículos</h2>
+        <a th:href="@{/admin/veiculos/novo}" class="btn btn-success">Adicionar Novo Veículo</a>
+    </div>
+    <hr>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Marca/Modelo</th>
+                <th>Placa</th>
+                <th>Ano</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="v : ${veiculos}">
+                <td><img th:src="@{${v.imagemUrl}}" width="100" th:alt="${v.marca} + ' ' + ${v.modelo}" th:title="${v.marca} + ' ' + ${v.modelo}" /></td>
+                <td th:text="${v.marca} + ' ' + ${v.modelo}"></td>
+                <td th:text="${v.placa}"></td>
+                <td th:text="${v.ano}"></td>
+                <td>
+                    <a th:href="@{/admin/veiculos/editar/{id}(id=${v.id})}" class="btn btn-primary btn-sm">Editar</a>
+                    <form th:action="@{/admin/veiculos/excluir/{id}(id=${v.id})}" method="post" class="d-inline" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

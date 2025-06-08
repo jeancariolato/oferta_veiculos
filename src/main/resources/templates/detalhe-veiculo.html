@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Veículo</title>
+</head>
+
+<section>
+    <div class="card" th:if="${veiculo}">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <img th:src="@{${veiculo.imagemUrl}}" class="img-fluid rounded-start" alt="Imagem do veículo">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title" th:text="${veiculo.marca} + ' ' + ${veiculo.modelo}"></h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Placa:</strong> <span th:text="${veiculo.placa}"></span></li>
+                        <li class="list-group-item"><strong>Ano:</strong> <span th:text="${veiculo.ano}"></span></li>
+                        <li class="list-group-item"><strong>Cor:</strong> <span th:text="${veiculo.cor}"></span></li>
+                        <li class="list-group-item"><strong>Categoria:</strong> <span th:text="${veiculo.categoria.nome}"></span></li>
+                    </ul>
+                    <a th:href="@{/}" class="btn btn-secondary mt-3">Voltar para a lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${veiculo == null}" class="alert alert-danger">
+        Veículo não encontrado.
+    </div>
+</section>
+
+</html>

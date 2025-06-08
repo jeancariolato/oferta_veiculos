@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: layout(~{::section})}">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<section>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Gerenciamento de Categorias</h2>
+        <a th:href="@{/admin/categorias/nova}" class="btn btn-success">Adicionar Nova Categoria</a>
+    </div>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cat : ${categoriasAdmin}">
+                <td th:text="${cat.id}"></td>
+                <td th:text="${cat.nome}"></td>
+                <td>
+                    <a th:href="@{/admin/categorias/editar/{id}(id=${cat.id})}" class="btn btn-primary btn-sm">Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</html>
