@@ -53,4 +53,11 @@ public class HomeController {
         }
         return "index";
     }
+
+     @GetMapping("/login")
+    public String login() {
+        // Este método apenas retorna o nome do arquivo HTML da página de login
+        // que vamos criar a seguir (sem o .html)
+        return "login";
+    }
 }

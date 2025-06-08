@@ -1,12 +1,11 @@
-<html lang="pt" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout/main :: (~{::body/content()})}">
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: layout(~{::section})}">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de Veículos</title>
 </head>
-<body>
-<div th:fragment="content">
+
+<section>
     <div class="d-flex justify-content-between align-items-center">
         <h2>Gerenciamento de Veículos</h2>
         <a th:href="@{/admin/veiculos/novo}" class="btn btn-success">Adicionar Novo Veículo</a>
@@ -24,7 +23,7 @@
         </thead>
         <tbody>
             <tr th:each="v : ${veiculos}">
-                <td><img th:src="@{${v.imagemUrl}}" width="100" th:alt="${v.marca} + ' ' + ${v.modelo}" th:title="${v.marca} + ' ' + ${v.modelo}" /></td>
+                <td><img th:src="@{${v.imagemUrl}}" width="100" alt="Imagem do veículo"/></td>
                 <td th:text="${v.marca} + ' ' + ${v.modelo}"></td>
                 <td th:text="${v.placa}"></td>
                 <td th:text="${v.ano}"></td>
@@ -37,6 +36,4 @@
             </tr>
         </tbody>
     </table>
-</div>
-</body>
-</html>
+</section>

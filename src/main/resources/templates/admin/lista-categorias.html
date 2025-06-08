@@ -11,7 +11,8 @@
         <a th:href="@{/admin/categorias/nova}" class="btn btn-success">Adicionar Nova Categoria</a>
     </div>
     <hr>
-    <table class="table table-striped">
+    
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -25,10 +26,8 @@
                 <td th:text="${cat.nome}"></td>
                 <td>
                     <a th:href="@{/admin/categorias/editar/{id}(id=${cat.id})}" class="btn btn-primary btn-sm">Editar</a>
-                </td>
+                    </td>
             </tr>
         </tbody>
     </table>
 </section>
-
-</html>
