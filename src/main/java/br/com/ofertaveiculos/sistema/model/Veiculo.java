@@ -19,12 +19,12 @@ public class Veiculo {
     private String cor;
     private String modelo;
     private String marca;
-    private int ano; // Adicionado para a funcionalidade de busca
+    private int ano; 
 
     @Column(name = "imagem_url")
-    private String imagemUrl; // Caminho para a imagem
+    private String imagemUrl; 
 
-    @ManyToOne // Muitos veículos para uma categoria
+    @ManyToOne 
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
 }

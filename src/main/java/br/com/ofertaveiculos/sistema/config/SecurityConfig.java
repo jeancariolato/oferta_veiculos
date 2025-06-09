@@ -29,15 +29,14 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             .formLogin(form -> form
-                .loginPage("/login").permitAll() // Define uma página de login customizada (opcional)
+                .loginPage("/login").permitAll() 
             )
             .logout(logout -> logout.permitAll());
 
         return http.build();
     }
     
-    // Para simplificar, vamos usar um usuário em memória.
-    // O ideal é implementar UserDetailsService para buscar do banco de dados.
+
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()

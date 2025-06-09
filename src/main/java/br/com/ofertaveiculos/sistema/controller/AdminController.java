@@ -33,12 +33,10 @@ public class AdminController {
         return "admin/lista-veiculos";
     }
 
-    // ESTE É O MÉTODO QUE FALTAVA!
     @GetMapping("/veiculos/novo")
     public String formNovoVeiculo(Model model) {
-        // Prepara um objeto Veiculo vazio para o formulário
+      
         model.addAttribute("veiculo", new Veiculo());
-        // Carrega a lista de categorias para o <select>
         model.addAttribute("categorias", categoriaService.findAll());
         return "admin/form-veiculo";
     }
@@ -78,7 +76,6 @@ public class AdminController {
 
   @GetMapping("/categorias")
     public String listarCategorias(Model model) {
-        // O nome da variável aqui ("categoriasAdmin") deve ser o mesmo usado no th:each
         model.addAttribute("categoriasAdmin", categoriaService.findAll());
         return "admin/lista-categorias";
     }
